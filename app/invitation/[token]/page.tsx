@@ -1,3 +1,1 @@
-export default function InvitationPage() {
-  return <div>Invitation — bientôt disponible</div>;
-}
+export default function InvitationPage() { return <div>Invitation</div>; }
