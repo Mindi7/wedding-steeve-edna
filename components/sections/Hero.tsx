@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 function Countdown() {
-  const weddingDate = new Date("2025-08-29T00:00:00");
+  const weddingDate = new Date("2026-08-29T00:00:00");
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -45,48 +45,40 @@ function Countdown() {
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="min-h-screen bg-creme flex flex-col items-center justify-center px-6 relative overflow-hidden"
-    >
-      {/* Motif décoratif fond */}
+    <section id="hero" className="min-h-screen bg-creme flex flex-col items-center justify-center px-6 relative overflow-hidden">
+
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-64 h-64 rounded-full border border-terra" />
         <div className="absolute bottom-10 right-10 w-96 h-96 rounded-full border border-terra" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-terra" />
       </div>
 
-      {/* Contenu principal */}
       <div className="relative z-10 text-center max-w-2xl mx-auto">
 
-        {/* Tag mariage */}
-        <p className="text-terra tracking-[0.4em] text-xs uppercase font-sans mb-6 animate-fade-in">
+        <p className="text-terra tracking-[0.4em] text-xs uppercase font-sans mb-6">
           Vous êtes invités au mariage de
         </p>
 
-        {/* Ligne décorative */}
         <div className="flex items-center justify-center gap-4 mb-4">
           <div className="h-px w-12 bg-terra opacity-40" />
           <div className="w-1.5 h-1.5 rounded-full bg-terra opacity-60" />
           <div className="h-px w-12 bg-terra opacity-40" />
         </div>
 
-        {/* Noms */}
-        <h1 className="font-serif text-6xl md:text-8xl font-light text-chocolat tracking-wide mb-2 animate-fade-up">
+        <h1 className="font-serif text-6xl md:text-8xl font-light text-chocolat tracking-wide mb-2">
           Steeve
         </h1>
-        <p className="font-serif text-2xl md:text-3xl text-terra font-light italic mb-2 animate-fade-in">
+        <p className="font-serif text-2xl md:text-3xl text-terra font-light italic mb-2">
           &amp;
         </p>
-        <h1 className="font-serif text-6xl md:text-8xl font-light text-chocolat tracking-wide mb-8 animate-fade-up">
+        <h1 className="font-serif text-6xl md:text-8xl font-light text-chocolat tracking-wide mb-8">
           Edna
         </h1>
 
-        {/* Date et lieu */}
         <div className="flex items-center justify-center gap-4 mb-2">
           <div className="h-px w-16 bg-creme-dark" />
           <p className="font-sans text-sm tracking-[0.3em] text-taupe uppercase">
-            29 Août 2025
+            29 Août 2026
           </p>
           <div className="h-px w-16 bg-creme-dark" />
         </div>
@@ -94,20 +86,14 @@ export default function Hero() {
           Macouria · Guyane Française
         </p>
 
-        {/* Compte à rebours */}
         <Countdown />
 
-        {/* Bouton RSVP */}
         <div className="mt-12">
-          
-            href="#rsvp"
-            className="inline-block bg-terra text-creme font-sans text-sm tracking-[0.3em] uppercase px-10 py-4 hover:bg-chocolat transition-colors duration-300"
-          >
+          <a href="#rsvp" className="inline-block bg-terra text-creme font-sans text-sm tracking-[0.3em] uppercase px-10 py-4 hover:bg-chocolat transition-colors duration-300">
             Je confirme ma présence
           </a>
         </div>
 
-        {/* Scroll indicator */}
         <div className="mt-16 flex flex-col items-center gap-2 opacity-40">
           <div className="w-px h-8 bg-taupe animate-pulse" />
           <span className="text-taupe text-xs tracking-widest font-sans">Découvrir</span>
