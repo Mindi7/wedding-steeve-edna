@@ -50,16 +50,16 @@ function Countdown() {
 
   return (
     <div className="flex items-end justify-center gap-1 mt-10">
-      {[{ v: t.d, l: "Jours" }, { v: t.h, l: "Heures" }, { v: t.m, l: "Min" }, { v: t.s, l: "Sec" }].map(({ v, l }, i) => (
-        <>
+      {[{ v: t.d, l: "Jours" }, { v: t.h, l: "Heures" }, { v: t.m, l: "Min" }, { v: t.s, l: "Sec" }].flatMap(({ v, l }, i) => {
+        const box = (
           <div key={l} className="relative bg-blush-lt border border-blush px-5 py-3.5 min-w-[68px] text-center">
             <div className="absolute inset-[-3px] border border-blush opacity-40 pointer-events-none" />
             <span className="font-serif text-[2.2rem] font-light text-choco leading-none block">{v}</span>
             <span className="font-sans text-[0.45rem] tracking-[.3em] uppercase text-taupe mt-1.5 block">{l}</span>
           </div>
-          {i < 3 && <span key={`dot-${i}`} className="font-serif text-[1.6rem] text-blush mb-4 opacity-70">·</span>}
-        </>
-      ))}
+        );
+        return i < 3 ? [box, <span key={`dot-${i}`} className="font-serif text-[1.6rem] text-blush mb-4 opacity-70">·</span>] : [box];
+      })}
     </div>
   );
 }
