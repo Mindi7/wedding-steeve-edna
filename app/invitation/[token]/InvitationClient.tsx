@@ -272,7 +272,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
         </p>
 
         <p className="font-sans text-[0.65rem] tracking-[.2em] uppercase text-taupe mt-10">
-          — {guest.name} —
+          — {displayName.trim() || guest.name} —
         </p>
       </div>
     </main>
