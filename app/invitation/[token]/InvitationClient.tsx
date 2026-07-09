@@ -133,7 +133,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
         <FloralCorner className="bottom-3 right-3 scale-x-[-1] scale-y-[-1]" />
 
         <p className="font-sans text-[0.6rem] tracking-[.4em] uppercase text-rose dark:text-[#E3B98A] mb-6">
-          Ensemble pour la vie
+          Ensemble, par Sa grâce.
         </p>
 
         <h1 className="leading-[.95] text-choco dark:text-[#F3E6D8] mt-1">
@@ -146,7 +146,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
           </span>
         </h1>
 
-        <p className="font-serif text-lg text-choco dark:text-[#F3E6D8] mt-6">Vendredi 29 Août 2026</p>
+        <p className="font-serif text-lg text-choco dark:text-[#F3E6D8] mt-6">Save the Date : Vendredi 29 Août 2026</p>
         <p className="font-sans text-[0.62rem] tracking-[.3em] uppercase text-rose dark:text-[#E3B98A] mb-2">
           Macouria · Guyane Française
         </p>
