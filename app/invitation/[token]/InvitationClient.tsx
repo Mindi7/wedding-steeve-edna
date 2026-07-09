@@ -175,7 +175,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
                 type="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className="w-full border border-blush dark:border-[#8A5A35] bg-transparent px-4 py-3 font-serif text-choco dark:text-[#F3E6D8] text-lg focus:outline-none focus:border-rose dark:focus:border-[#E3B98A] placeholder:text-taupe/60 dark:placeholder:text-[#8A6A4F]"
+                className="w-full border border-blush dark:border-[#8A5A35] bg-transparent px-4 py-3 font-serif text-choco dark:text-[#F3E6D8] text-lg focus:outline-none focus:border-rose dark:focus:border-[#E3B98A] placeholder:text-taupe/60 dark:placeholder:text-[#8A6A4F] scroll-mt-20"
                 placeholder="Votre prénom"
               />
             </label>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Jost, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
@@ -25,6 +25,12 @@ export const metadata: Metadata = {
     title: "Steeve & Edna se marient ! 💍",
     description: "29 Août 2026 · Macouria, Guyane française",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  interactiveWidget: "resizes-content",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
