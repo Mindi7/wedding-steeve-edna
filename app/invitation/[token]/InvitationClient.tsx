@@ -125,7 +125,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
   }
 
   return (
-    <main className="min-h-dvh bg-ivory dark:bg-[#1A120C] flex items-center justify-center px-6 py-16">
+    <main className="min-h-dvh bg-ivory dark:bg-[#1A120C] flex items-start md:items-center justify-center px-6 py-10 md:py-16">
       <div className="relative w-full max-w-lg bg-ivory dark:bg-[#241811] border border-blush dark:border-[#8A5A35]/50 px-10 py-14 text-center shadow-[0_20px_60px_-20px_rgba(74,36,24,0.25)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
         <FloralCorner className="top-3 left-3" />
         <FloralCorner className="top-3 right-3 scale-x-[-1]" />
