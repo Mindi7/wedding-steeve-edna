@@ -7,6 +7,12 @@ export type Guest = {
 // Invités du mariage — chacun a un lien personnel /invitation/[token]
 // maxCompanions : nombre maximum de personnes que l'invité peut faire venir avec lui (0 = ne peut inviter personne)
 export const guests: Guest[] = [
+  // --- Comptes de TEST uniquement (ne pas envoyer, ne pas supprimer avant le mariage) ---
+  { token: "test-0acc-demo", name: "Test", maxCompanions: 0 },
+  { token: "test-1acc-demo", name: "Test", maxCompanions: 1 },
+  { token: "test-2acc-demo", name: "Test", maxCompanions: 2 },
+
+  // --- Vrais invités ---
   { token: "jean-hbrp", name: "Jean", maxCompanions: 1 },
   { token: "rodrigue-oig8", name: "Rodrigue", maxCompanions: 1 },
   { token: "williams-f1cb", name: "Williams", maxCompanions: 1 },
