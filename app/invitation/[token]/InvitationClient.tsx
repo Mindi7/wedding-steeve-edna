@@ -125,8 +125,8 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
   }
 
   return (
-    <main className="bg-ivory dark:bg-[#1A120C] px-6 py-10 md:py-16">
-      <div className="relative w-full max-w-lg mx-auto bg-ivory dark:bg-[#241811] border border-blush dark:border-[#8A5A35]/50 px-10 py-14 text-center shadow-[0_20px_60px_-20px_rgba(74,36,24,0.25)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
+    <main className="bg-ivory dark:bg-[#1A120C] px-4 sm:px-6 py-10 md:py-16 overflow-x-hidden">
+      <div className="relative w-full max-w-lg mx-auto bg-ivory dark:bg-[#241811] border border-blush dark:border-[#8A5A35]/50 px-6 sm:px-10 py-14 text-center shadow-[0_20px_60px_-20px_rgba(74,36,24,0.25)] dark:shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]">
         <FloralCorner className="top-3 left-3" />
         <FloralCorner className="top-3 right-3 scale-x-[-1]" />
         <FloralCorner className="bottom-3 left-3 scale-y-[-1]" />
@@ -183,11 +183,11 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
             <p className="font-sans text-[0.62rem] tracking-[.3em] uppercase text-rose dark:text-[#E3B98A] mb-5">
               Serez-vous des nôtres ?
             </p>
-            <div className="flex gap-3 justify-center mb-2">
+            <div className="flex gap-2 sm:gap-3 justify-center mb-2">
               <button
                 onClick={selectYes}
                 disabled={status === "sending"}
-                className={`flex-1 max-w-[170px] font-sans text-sm tracking-wide py-4 px-3 border transition-all duration-300 disabled:opacity-50 ${
+                className={`flex-1 min-w-0 max-w-[170px] font-sans text-xs sm:text-sm tracking-wide py-4 px-2 sm:px-3 border transition-all duration-300 disabled:opacity-50 ${
                   choice === "yes"
                     ? "bg-rose text-ivory border-rose dark:bg-[#E3B98A] dark:text-[#1A120C] dark:border-[#E3B98A]"
                     : "border-rose text-rose-dk hover:bg-rose hover:text-ivory dark:border-[#E3B98A] dark:text-[#E3B98A] dark:hover:bg-[#E3B98A] dark:hover:text-[#1A120C]"
@@ -198,7 +198,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
               <button
                 onClick={selectNo}
                 disabled={status === "sending"}
-                className={`flex-1 max-w-[170px] font-sans text-sm tracking-wide py-4 px-3 border transition-all duration-300 disabled:opacity-50 ${
+                className={`flex-1 min-w-0 max-w-[170px] font-sans text-xs sm:text-sm tracking-wide py-4 px-2 sm:px-3 border transition-all duration-300 disabled:opacity-50 ${
                   choice === "no"
                     ? "bg-taupe text-ivory border-taupe dark:bg-[#C9A479] dark:text-[#1A120C] dark:border-[#C9A479]"
                     : "border-taupe text-taupe hover:bg-taupe hover:text-ivory dark:border-[#C9A479] dark:text-[#C9A479] dark:hover:bg-[#C9A479] dark:hover:text-[#1A120C]"
