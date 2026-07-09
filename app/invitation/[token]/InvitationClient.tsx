@@ -146,7 +146,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
           </span>
         </h1>
 
-        <p className="font-serif text-lg text-choco dark:text-[#F3E6D8] mt-6">Save the Date : Vendredi 29 Août 2026</p>
+        <p className="font-serif text-lg text-choco dark:text-[#F3E6D8] mt-6">Save the Date : Samedi 29 Août 2026</p>
         <p className="font-sans text-[0.62rem] tracking-[.3em] uppercase text-rose dark:text-[#E3B98A] mb-2">
           Macouria · Guyane Française
         </p>
@@ -155,7 +155,7 @@ export default function InvitationClient({ guest }: { guest: Guest }) {
 
         <div className="flex items-center justify-center gap-3 mb-8">
           <span className="w-10 h-px bg-blush dark:bg-[#8A5A35]" />
-          <span className="font-serif italic text-taupe dark:text-[#C9A479] text-sm">pour toujours</span>
+          <span className="font-serif italic text-taupe dark:text-[#C9A479] text-sm">pour le meilleur et pour le meilleur</span>
           <span className="w-10 h-px bg-blush dark:bg-[#8A5A35]" />
         </div>
 
