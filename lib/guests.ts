@@ -35,6 +35,9 @@ export const guests: Guest[] = [
   { token: "jordan-zren", name: "Jordan", maxCompanions: 3 },
   { token: "christian-un5z", name: "Christian", maxCompanions: 1 },
   { token: "frenel-3jqi", name: "Frenel", maxCompanions: 0 },
+  { token: "junior-f18b", name: "Junior", maxCompanions: 1 },
+  { token: "marie-daniel-xqdo", name: "Marie Daniel", maxCompanions: 0 },
+  
 ];
 
 export function getGuestByToken(token: string): Guest | undefined {
