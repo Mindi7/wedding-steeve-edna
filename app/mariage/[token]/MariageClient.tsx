@@ -174,7 +174,12 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <Image src="/photos/couple-hero.jpg" alt="" fill priority className="object-cover opacity-60" />
         <div className="absolute inset-0 bg-black/25" />
         <div className="relative z-10 w-full max-w-sm bg-ivory px-6 py-8 text-center shadow-2xl overflow-hidden">
-          <img src="/photos/floral-top.png" alt="" className="absolute top-0 right-0 w-40 opacity-95" />
+          <img
+            src="/photos/floral-top.png"
+            alt=""
+            className="absolute top-0 right-0 w-32 opacity-95"
+            style={{ maskImage: "linear-gradient(225deg, black 55%, transparent 85%)", WebkitMaskImage: "linear-gradient(225deg, black 55%, transparent 85%)" }}
+          />
           <p className="font-sans text-[0.52rem] tracking-[.3em] uppercase text-rose-dk mt-2 mb-3 relative z-10">
             En présence de leurs familles
           </p>
@@ -207,7 +212,12 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           >
             📍 Google Maps
           </a>
-          <img src="/photos/floral-bottom.png" alt="" className="absolute bottom-0 left-0 w-40 opacity-95" />
+          <img
+            src="/photos/floral-bottom.png"
+            alt=""
+            className="absolute bottom-0 left-0 w-32 opacity-95"
+            style={{ maskImage: "linear-gradient(45deg, black 55%, transparent 85%)", WebkitMaskImage: "linear-gradient(45deg, black 55%, transparent 85%)" }}
+          />
         </div>
       </section>
 
