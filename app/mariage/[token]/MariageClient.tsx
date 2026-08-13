@@ -173,10 +173,8 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-10 px-4">
         <Image src="/photos/couple-hero.jpg" alt="" fill priority className="object-cover opacity-60" />
         <div className="absolute inset-0 bg-black/25" />
-        <div className="relative z-10 w-full max-w-sm bg-ivory px-6 py-8 text-center shadow-2xl">
-          <div className="relative">
-            <img src="/photos/floral-top.png" alt="" className="absolute -top-8 -right-6 w-40 opacity-95" />
-          </div>
+        <div className="relative z-10 w-full max-w-sm bg-ivory px-6 py-8 text-center shadow-2xl overflow-hidden">
+          <img src="/photos/floral-top.png" alt="" className="absolute top-0 right-0 w-40 opacity-95" />
           <p className="font-sans text-[0.52rem] tracking-[.3em] uppercase text-rose-dk mt-2 mb-3 relative z-10">
             En présence de leurs familles
           </p>
@@ -209,9 +207,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           >
             📍 Google Maps
           </a>
-          <div className="relative h-8">
-            <img src="/photos/floral-bottom.png" alt="" className="absolute -bottom-4 -left-6 w-40 opacity-95" />
-          </div>
+          <img src="/photos/floral-bottom.png" alt="" className="absolute bottom-0 left-0 w-40 opacity-95" />
         </div>
       </section>
 
