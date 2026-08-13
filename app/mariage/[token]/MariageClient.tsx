@@ -151,6 +151,28 @@ function PersonMenuForm({
   );
 }
 
+function FloralWreath() {
+  return (
+    <svg viewBox="0 0 320 90" className="w-56 sm:w-64 mx-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 70 C 60 20, 140 10, 160 10 C 180 10, 260 20, 300 70" stroke="#8C9A7A" strokeWidth="1.5" opacity="0.6" fill="none" />
+      {/* left cluster */}
+      <circle cx="30" cy="62" r="10" fill="#C4622D" opacity="0.9" />
+      <circle cx="46" cy="50" r="8" fill="#E8C4B4" />
+      <circle cx="60" cy="60" r="7" fill="#A0604A" opacity="0.85" />
+      <circle cx="40" cy="72" r="6" fill="#F5E2D8" />
+      <ellipse cx="65" cy="42" rx="9" ry="4" fill="#8C9A7A" opacity="0.7" transform="rotate(-20 65 42)" />
+      <ellipse cx="24" cy="46" rx="8" ry="3.5" fill="#8C9A7A" opacity="0.7" transform="rotate(30 24 46)" />
+      {/* right cluster */}
+      <circle cx="290" cy="62" r="10" fill="#C4622D" opacity="0.9" />
+      <circle cx="274" cy="50" r="8" fill="#E8C4B4" />
+      <circle cx="260" cy="60" r="7" fill="#A0604A" opacity="0.85" />
+      <circle cx="280" cy="72" r="6" fill="#F5E2D8" />
+      <ellipse cx="255" cy="42" rx="9" ry="4" fill="#8C9A7A" opacity="0.7" transform="rotate(20 255 42)" />
+      <ellipse cx="296" cy="46" rx="8" ry="3.5" fill="#8C9A7A" opacity="0.7" transform="rotate(-30 296 46)" />
+    </svg>
+  );
+}
+
 export default function MariageClient({ guest }: { guest: GuestV2 }) {
   const [displayName, setDisplayName] = useState(guest.name);
   const [choice, setChoice] = useState<"yes" | "no" | null>(null);
@@ -213,37 +235,40 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
   return (
     <main className="bg-ivory">
       {/* HERO */}
-      <section className="relative min-h-[100dvh] flex items-end justify-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-choco py-10 px-4">
         <Image
           src="/photos/couple-hero.jpg"
           alt="Steeve et Edna"
           fill
           priority
-          className="object-cover"
+          className="object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
-        <div className="relative z-10 text-center px-6 pb-16 text-ivory">
-          <p className="font-sans text-[0.62rem] tracking-[.4em] uppercase text-champagne mb-4">
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="relative z-10 w-full max-w-sm bg-ivory/95 backdrop-blur-sm px-8 py-10 text-center shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
+          <FloralWreath />
+          <p className="font-sans text-[0.55rem] tracking-[.35em] uppercase text-rose-dk mt-3 mb-1">
             En présence de leurs familles
           </p>
-          <h1 className="leading-[.9]">
-            <span className="font-script block" style={{ fontSize: "clamp(3rem,10vw,4.6rem)" }}>
-              Steeve
-            </span>
-            <span className="font-serif italic text-champagne block my-1 text-2xl">&amp;</span>
-            <span className="font-script block" style={{ fontSize: "clamp(3rem,10vw,4.6rem)" }}>
-              Edna
-            </span>
+          <h1 className="font-script text-terra leading-none my-2 flex items-center justify-center gap-2" style={{ fontSize: "clamp(2.6rem,9vw,3.4rem)" }}>
+            Grand <span className="text-rose">♥</span> Oui
           </h1>
-          <p className="font-sans text-xs tracking-[.2em] uppercase text-champagne/90 mt-5">
-            vous invitent à la célébration de leur mariage
+          <p className="font-serif tracking-[.15em] text-choco text-lg mt-4">
+            STEEVE <span className="italic text-rose-dk">&amp;</span> EDNA
           </p>
-          <p className="font-serif text-xl mt-3">Samedi 29 Août 2026 · 10h30</p>
+          <p className="font-sans text-[0.55rem] tracking-[.25em] uppercase text-taupe mt-3 leading-relaxed">
+            vous invitent
+            <br />à la célébration de leur mariage
+          </p>
+          <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose-dk mt-5">Août</p>
+          <p className="font-serif text-2xl text-choco mt-1">
+            Samedi 29 <span className="text-terra">2026</span> · à 10h30
+          </p>
           <a
             href={MAPS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-6 border border-champagne text-champagne font-sans text-xs tracking-[.2em] uppercase px-6 py-3 hover:bg-champagne hover:text-choco transition-all"
+            className="inline-block mt-6 bg-terra text-ivory font-sans text-[0.65rem] tracking-[.2em] uppercase px-6 py-2.5 hover:bg-rose-dk transition-all"
           >
             📍 Google Maps
           </a>
