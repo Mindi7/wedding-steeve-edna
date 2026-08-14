@@ -183,22 +183,40 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
     if (!choice || status === "sending") return;
     setStatus("sending");
     const name = displayName.trim() || guest.name;
-    let reponse = choice === "yes" ? "Oui, avec joie" : "Avec regret, non";
 
-    if (choice === "yes") {
-      const menuLine = (m: PersonMenu, label: string) =>
-        `${label} — Entrée: ${m.entree || "?"} | Plat: ${m.plat || "?"} | Accompagnement: ${m.accompagnement || "?"}`;
-      reponse += `\n${menuLine(ownMenu, name)}`;
+    let reponse: string;
+
+    if (choice === "no") {
+      reponse = "Avec regret, non";
+    } else {
+      const menuBlock = (m: PersonMenu, label: string) =>
+        `${label} :\n` +
+        `   • Entrée : ${m.entree || "(non choisi)"}\n` +
+        `   • Plat : ${m.plat || "(non choisi)"}\n` +
+        `   • Accompagnement : ${m.accompagnement || "(non choisi)"}`;
+
+      const lines: string[] = ["Oui, avec joie", ""];
+
       if (companionCount > 0) {
         const names = companionNames.map((n) => n.trim()).filter(Boolean);
-        reponse +=
+        lines.push(
           companionCount === 1
-            ? `\nAccompagné(e) de 1 personne : ${names[0] || "(nom non renseigné)"}`
-            : `\nAccompagné(e) de ${companionCount} personnes : ${names.length ? names.join(", ") : "(noms non renseignés)"}`;
-        companionMenus.forEach((m, i) => {
-          reponse += `\n${menuLine(m, names[i] || `Accompagnant ${i + 1}`)}`;
-        });
+            ? `Accompagné(e) de 1 personne : ${names[0] || "(nom non renseigné)"}`
+            : `Accompagné(e) de ${companionCount} personnes : ${names.length ? names.join(", ") : "(noms non renseignés)"}`
+        );
+        lines.push("");
       }
+
+      lines.push("— MENUS —", "");
+      lines.push(menuBlock(ownMenu, name));
+
+      companionMenus.forEach((m, i) => {
+        const companionName = companionNames[i]?.trim() || `Accompagnant ${i + 1}`;
+        lines.push("");
+        lines.push(menuBlock(m, companionName));
+      });
+
+      reponse = lines.join("\n");
     }
 
     try {
