@@ -282,26 +282,27 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
   return (
     <main className="bg-ivory">
-      {/* HERO — image Canva d'origine (bouton stylé) + zone cliquable + nom de l'église à côté */}
+      {/* HERO — image Canva d'origine + grand bandeau église bien visible en dessous */}
       <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory aspect-[386/813]">
-        <Image src="/canva/hero-v3.png" alt="Steeve et Edna" fill className="object-contain" priority />
-        <a
-          href={CHURCH_MAPS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Google Maps — Église ICC"
-          className="absolute left-[12%] w-[52%] h-[4.7%]"
-          style={{ top: "80.3%" }}
-        />
-        <div className="absolute" style={{ top: "75.5%", left: "12%" }}>
-          <Stagger delay={200}>
-            <span className="block bg-ivory/90 px-2 py-1 font-sans text-[0.65rem] tracking-[.1em] uppercase text-terra font-semibold shadow-sm">
-              Église ICC
-            </span>
-          </Stagger>
-        </div>
+        <Image src="/canva/hero-clean.png" alt="Steeve et Edna" fill className="object-contain" priority />
       </section>
+      <div className="w-full max-w-sm mx-auto bg-blush-lt px-6 py-6 text-center">
+        <Stagger delay={100}>
+          <p className="font-script text-2xl text-terra leading-none">église</p>
+          <h2 className="font-serif text-2xl tracking-[.15em] uppercase text-choco mt-1 mb-4">ICC</h2>
+        </Stagger>
+        <Stagger delay={300}>
+          <a
+            href={CHURCH_MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-terra text-ivory font-sans text-sm tracking-[.15em] uppercase px-8 py-4 shadow-md hover:bg-rose-dk transition-all w-full"
+          >
+            📍 Google Maps
+          </a>
+        </Stagger>
+      </div>
       </Reveal>
 
       {/* MUSIQUE — vidéo uniquement, sans le label "Notre chanson" */}
