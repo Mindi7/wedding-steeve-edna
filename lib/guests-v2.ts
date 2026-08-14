@@ -20,7 +20,6 @@ export const guestsV2: GuestV2[] = [
   { token: "martine-unzq", name: "Martine", maxCompanions: 0, companions: [] },
   { token: "dieuvilla-wwy6", name: "Dieuvilla", maxCompanions: 0, companions: [] },
   { token: "baby-evf9", name: "Baby", maxCompanions: 1, companions: ["Catiana"] },
-  { token: "leyenne-8ss3", name: "Leyenne", maxCompanions: 1, companions: [] },
   { token: "joan-jtbx", name: "Joan", maxCompanions: 2, companions: ["Cédric", "Sarael"] },
   { token: "anaclara-x31f", name: "Anaclara", maxCompanions: 0, companions: [] },
   { token: "sonia-z95h", name: "Sonia", maxCompanions: 0, companions: [] },
@@ -36,6 +35,17 @@ export const guestsV2: GuestV2[] = [
   { token: "frenel-racj", name: "Frenel", maxCompanions: 0, companions: [] },
   { token: "junior-375x", name: "Junior", maxCompanions: 1, companions: [] },
   { token: "marie-daniel-mq53", name: "Marie Daniel", maxCompanions: 0, companions: [] },
+
+  // --- Ajoutés le 14/08 : témoins/famille + cortège ---
+  { token: "antoine-b5ot", name: "Antoine", maxCompanions: 0, companions: [] },
+  { token: "belony-iea8", name: "Belony", maxCompanions: 0, companions: [] },
+  { token: "job-2ynz", name: "Job", maxCompanions: 1, companions: [] },
+  { token: "ernso-tvxh", name: "Ernso", maxCompanions: 1, companions: [] },
+  { token: "dayou-j5ff", name: "Dayou", maxCompanions: 0, companions: [] },
+  { token: "sam-3rbc", name: "Sam", maxCompanions: 0, companions: [] },
+  { token: "nathou-gw4e", name: "Nathou", maxCompanions: 0, companions: [] },
+  { token: "lyta-m9qw", name: "Lyta", maxCompanions: 0, companions: [] },
+  { token: "dya-oto2", name: "Dya", maxCompanions: 0, companions: [] },
 ];
 
 export function getGuestV2ByToken(token: string): GuestV2 | undefined {

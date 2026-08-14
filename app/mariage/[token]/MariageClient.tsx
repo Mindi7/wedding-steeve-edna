@@ -18,6 +18,9 @@ const CHURCH_MAPS_URL =
 const VENUE_MAPS_URL =
   "https://www.google.com/maps/search/97355/@4.910319805145264,-52.458709716796875,17z?hl=fr";
 
+// Date limite réelle pour répondre au RSVP (les menus doivent être figés pour le traiteur)
+const RSVP_DEADLINE = new Date("2026-08-16T15:00:00");
+
 const ENTREE_OPTIONS = [
   "Salade thaï accompagnée de crevettes tempura",
   "Salade thaï accompagnée de brochettes de poulet",
@@ -398,7 +401,13 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         </div>
 
         <div className="max-w-sm mx-auto bg-ivory border border-blush px-6 py-10 text-center -mt-2">
-          {status !== "sent" && (
+          {new Date() > RSVP_DEADLINE ? (
+            <p className="font-serif italic text-taupe text-lg py-6">
+              Les réponses sont maintenant closes.
+              <br />
+              Merci à toutes celles et ceux qui ont déjà répondu — à très bientôt pour le grand jour ✿
+            </p>
+          ) : status !== "sent" && (
             <>
               <label className="block text-left mb-6">
                 <span className="font-sans text-[0.6rem] tracking-[.25em] uppercase text-rose mb-2 block">Votre prénom</span>
