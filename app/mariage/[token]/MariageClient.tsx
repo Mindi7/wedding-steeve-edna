@@ -271,27 +271,33 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
   return (
     <main className="bg-ivory">
-      {/* HERO — image Canva exacte + bouton Google Maps cliquable par-dessus + adresse église visible */}
+      {/* HERO — image Canva (bouton Google Maps original retiré) + église au-dessus + vrai bouton Maps à droite */}
       <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
-        <a
-          href={CHURCH_MAPS_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Google Maps"
-          className="absolute left-1/2 -translate-x-1/2 w-[55%] h-[4.5%]"
-          style={{ top: "78.5%" }}
-        />
       </section>
-      <Stagger delay={400}>
-        <p className="text-center pt-3 pb-4 px-6">
-          <span className="block font-serif text-base font-semibold text-terra">Église ICC</span>
-          <span className="block font-sans text-[0.6rem] tracking-[.1em] text-taupe mt-1">
-            Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
-          </span>
-        </p>
-      </Stagger>
+      <div className="w-full max-w-sm mx-auto px-6 pt-1 pb-6">
+        <Stagger delay={200}>
+          <p className="text-center">
+            <span className="block font-serif text-base font-semibold text-terra">Église ICC</span>
+            <span className="block font-sans text-[0.6rem] tracking-[.1em] text-taupe mt-1">
+              Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
+            </span>
+          </p>
+        </Stagger>
+        <Stagger delay={400}>
+          <div className="flex justify-end mt-4">
+            <a
+              href={CHURCH_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-terra text-ivory font-sans text-[0.65rem] tracking-[.15em] uppercase px-5 py-2.5 hover:bg-rose-dk transition-all"
+            >
+              📍 Google Maps
+            </a>
+          </div>
+        </Stagger>
+      </div>
       </Reveal>
 
       {/* MUSIQUE — vidéo uniquement, sans le label "Notre chanson" */}
@@ -301,7 +307,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           <div className="aspect-video overflow-hidden shadow-lg">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/t7owFiihXgg"
+              src="https://www.youtube.com/embed/t7owFiihXgg?autoplay=1&playsinline=1"
               title="You Know My Name - Tasha Cobbs Leonard"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
