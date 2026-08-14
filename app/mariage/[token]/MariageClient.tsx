@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import type { GuestV2 } from "@/lib/guests-v2";
 
@@ -107,6 +107,40 @@ const TIMELINE = [
   { time: "22:00", title: "Soirée dansante", icon: "/canva/icon-speaker.png" },
 ];
 
+function Reveal({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="transition-all duration-1000 ease-out"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(32px)",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function MariageClient({ guest }: { guest: GuestV2 }) {
   const [displayName, setDisplayName] = useState(guest.name);
   const [choice, setChoice] = useState<"yes" | "no" | null>(null);
@@ -166,6 +200,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
   return (
     <main className="bg-ivory">
       {/* HERO — image Canva exacte + bouton Google Maps cliquable par-dessus + adresse église visible */}
+      <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
         <a
@@ -183,8 +218,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           </span>
         </p>
       </section>
+      </Reveal>
 
       {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
+      <Reveal>
       <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center">
         <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
         <div className="aspect-video overflow-hidden shadow-lg">
@@ -199,8 +236,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <p className="font-serif italic text-taupe text-sm mt-4">You Know My Name</p>
         <p className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe/70 mt-1">Tasha Cobbs Leonard ft. Jimi Cravity</p>
       </section>
+      </Reveal>
 
       {/* COMPTE À REBOURS — même largeur de carte que les autres sections */}
+      <Reveal>
       <section className="relative w-full max-w-sm mx-auto overflow-hidden">
         <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={577} className="w-full h-[577px] object-cover" />
         <div className="absolute inset-0 bg-black/55" />
@@ -217,8 +256,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           </div>
         </div>
       </section>
+      </Reveal>
 
       {/* LIEU DE RÉCEPTION — image Canva exacte + bouton Google Maps cliquable */}
+      <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/venue.png" alt="Le lieu de réception" width={386} height={857} className="w-full h-auto" />
         <a
@@ -230,8 +271,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           style={{ top: "29%" }}
         />
       </section>
+      </Reveal>
 
       {/* LA JOURNÉE — titre + icônes du Canva, horaires réels et corrects */}
+      <Reveal>
       <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-16">
         <div className="max-w-[200px] mx-auto mb-10">
           <Image src="/canva/journee-title.png" alt="La journée" width={372} height={185} className="w-full h-auto" />
@@ -248,13 +291,17 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           ))}
         </div>
       </section>
+      </Reveal>
 
       {/* DÉTAILS / DRESS CODE — image Canva exacte */}
+      <Reveal>
       <section className="w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/details.png" alt="Détails et dress code" width={386} height={835} className="w-full h-auto" />
       </section>
+      </Reveal>
 
       {/* RSVP — en-tête Canva exact, puis vrai formulaire fonctionnel */}
+      <Reveal>
       <section className="bg-ivory">
         <div className="w-full max-w-sm mx-auto">
           <Image src="/canva/rsvp-header.png" alt="Votre réponse" width={386} height={741} className="w-full h-auto" />
@@ -378,8 +425,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           <p className="font-sans text-[0.65rem] tracking-[.2em] uppercase text-taupe mt-8">— {displayName.trim() || guest.name} —</p>
         </div>
       </section>
+      </Reveal>
 
       {/* CLÔTURE — vraie photo du couple + texte "Avec amour" */}
+      <Reveal>
       <section className="relative min-h-[70dvh] flex items-end justify-center overflow-hidden">
         <Image src="/canva/closing-real.jpg" alt="Steeve et Edna" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
@@ -390,6 +439,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           </p>
         </div>
       </section>
+      </Reveal>
     </main>
   );
 }
