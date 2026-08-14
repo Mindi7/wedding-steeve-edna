@@ -359,9 +359,16 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         </div>
       </section>
 
-      {/* CLÔTURE — image Canva exacte */}
-      <section className="relative w-full">
-        <Image src="/canva/closing.jpg" alt="Avec amour, Steeve et Edna" width={1200} height={705} className="w-full h-auto" />
+      {/* CLÔTURE — vraie photo du couple + texte "Avec amour" */}
+      <section className="relative min-h-[70dvh] flex items-end justify-center overflow-hidden">
+        <Image src="/canva/closing-real.jpg" alt="Steeve et Edna" fill className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="relative z-10 text-center pb-14">
+          <p className="font-serif italic text-champagne text-lg">Avec amour</p>
+          <p className="font-script text-ivory" style={{ fontSize: "clamp(2.4rem,7vw,3.2rem)" }}>
+            Steeve &amp; Edna
+          </p>
+        </div>
       </section>
     </main>
   );
