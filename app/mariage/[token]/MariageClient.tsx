@@ -282,29 +282,29 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
   return (
     <main className="bg-ivory">
-      {/* HERO — image Canva + toutes les infos église regroupées ensemble sur cette 1ère page */}
+      {/* HERO — image Canva + bloc église superposé sur la photo, au-dessus du bouquet bas-droite */}
       <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
+        <div className="absolute inset-x-0 bottom-0 flex justify-end" style={{ paddingBottom: "18%" }}>
+          <Stagger delay={200}>
+            <div className="mr-4 ml-6 bg-ivory/95 border border-blush px-4 py-4 text-center shadow-lg">
+              <span className="block font-serif text-sm font-semibold text-terra">Église ICC</span>
+              <span className="block font-sans text-[0.55rem] tracking-[.08em] text-taupe mt-1 mb-2.5">
+                Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
+              </span>
+              <a
+                href={CHURCH_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-terra text-ivory font-sans text-[0.6rem] tracking-[.15em] uppercase px-4 py-2 hover:bg-rose-dk transition-all"
+              >
+                📍 Google Maps
+              </a>
+            </div>
+          </Stagger>
+        </div>
       </section>
-      <div className="w-full max-w-sm mx-auto px-6 pt-2 pb-8">
-        <Stagger delay={200}>
-          <div className="border border-blush bg-blush-lt/40 px-5 py-5 text-center">
-            <span className="block font-serif text-base font-semibold text-terra">Église ICC</span>
-            <span className="block font-sans text-[0.6rem] tracking-[.1em] text-taupe mt-1 mb-4">
-              Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
-            </span>
-            <a
-              href={CHURCH_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-terra text-ivory font-sans text-[0.65rem] tracking-[.15em] uppercase px-5 py-2.5 hover:bg-rose-dk transition-all"
-            >
-              📍 Google Maps
-            </a>
-          </div>
-        </Stagger>
-      </div>
       </Reveal>
 
       {/* MUSIQUE — vidéo uniquement, sans le label "Notre chanson" */}
