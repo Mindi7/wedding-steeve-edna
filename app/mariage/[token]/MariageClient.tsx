@@ -185,7 +185,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       </section>
 
       {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
-      <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center border-x border-blush">
+      <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center">
         <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
         <div className="aspect-video overflow-hidden shadow-lg">
           <iframe
@@ -232,11 +232,11 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       </section>
 
       {/* LA JOURNÉE — titre + icônes du Canva, horaires réels et corrects */}
-      <section className="py-16 px-6 bg-ivory">
+      <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-16">
         <div className="max-w-[200px] mx-auto mb-10">
           <Image src="/canva/journee-title.png" alt="La journée" width={372} height={185} className="w-full h-auto" />
         </div>
-        <div className="max-w-xs mx-auto flex flex-col gap-8 border-l border-blush pl-6">
+        <div className="max-w-[260px] mx-auto flex flex-col gap-8 border-l border-blush pl-6">
           {TIMELINE.map((step, i) => (
             <div key={i} className="flex items-center gap-4">
               <Image src={step.icon} alt="" width={40} height={40} className="w-9 h-9 shrink-0 -ml-[3.1rem]" />
@@ -260,7 +260,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           <Image src="/canva/rsvp-header.png" alt="Votre réponse" width={386} height={741} className="w-full h-auto" />
         </div>
 
-        <div className="max-w-lg mx-auto bg-ivory border border-blush px-6 sm:px-10 py-10 text-center -mt-2">
+        <div className="max-w-sm mx-auto bg-ivory border border-blush px-6 py-10 text-center -mt-2">
           {status !== "sent" && (
             <>
               <label className="block text-left mb-6">
