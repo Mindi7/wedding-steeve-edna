@@ -8,6 +8,8 @@ import type { GuestV2 } from "@/lib/guests-v2";
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
+// URL du Google Apps Script (voir /docs/suivi-rsvp.md pour la mise en place)
+const SHEET_WEBHOOK_URL = process.env.NEXT_PUBLIC_SHEET_WEBHOOK_URL as string | undefined;
 
 const CHURCH_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=" +
@@ -217,6 +219,42 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       });
 
       reponse = lines.join("\n");
+    }
+
+    // Envoie une ligne par personne (invité + chaque accompagnant) vers le Google Sheet de suivi.
+    // Ne bloque jamais l'envoi de l'email si le Sheet n'est pas configuré ou indisponible.
+    if (SHEET_WEBHOOK_URL) {
+      try {
+        const rows =
+          choice === "no"
+            ? [{ nom: name, role: "Invité", reponse: "Non", entree: "", plat: "", accompagnement: "" }]
+            : [
+                {
+                  nom: name,
+                  role: "Invité",
+                  reponse: "Oui",
+                  entree: ownMenu.entree,
+                  plat: ownMenu.plat,
+                  accompagnement: ownMenu.accompagnement,
+                },
+                ...companionMenus.map((m, i) => ({
+                  nom: companionNames[i]?.trim() || `Accompagnant ${i + 1}`,
+                  role: `Accompagnant de ${name}`,
+                  reponse: "Oui",
+                  entree: m.entree,
+                  plat: m.plat,
+                  accompagnement: m.accompagnement,
+                })),
+              ];
+        await fetch(SHEET_WEBHOOK_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify({ rows }),
+        });
+      } catch (err) {
+        console.error("Erreur envoi Google Sheet:", err);
+      }
     }
 
     try {
