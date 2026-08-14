@@ -294,14 +294,13 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           className="absolute left-[12%] w-[52%] h-[4.7%]"
           style={{ top: "80.3%" }}
         />
-        <Stagger delay={200}>
-          <span
-            className="absolute bg-ivory/90 px-2 py-1 font-sans text-[0.65rem] tracking-[.1em] uppercase text-terra font-semibold shadow-sm"
-            style={{ top: "75.5%", left: "12%" }}
-          >
-            Église ICC
-          </span>
-        </Stagger>
+        <div className="absolute" style={{ top: "75.5%", left: "12%" }}>
+          <Stagger delay={200}>
+            <span className="block bg-ivory/90 px-2 py-1 font-sans text-[0.65rem] tracking-[.1em] uppercase text-terra font-semibold shadow-sm">
+              Église ICC
+            </span>
+          </Stagger>
+        </div>
       </section>
       </Reveal>
 
