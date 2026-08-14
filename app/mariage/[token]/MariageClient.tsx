@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import type { GuestV2 } from "@/lib/guests-v2";
 
@@ -107,6 +107,8 @@ const TIMELINE = [
   { time: "22:00", title: "Soirée dansante", icon: "/canva/icon-speaker.png" },
 ];
 
+const RevealContext = createContext(false);
+
 function Reveal({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -128,12 +130,23 @@ function Reveal({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
+    <div ref={ref}>
+      <RevealContext.Provider value={visible}>{children}</RevealContext.Provider>
+    </div>
+  );
+}
+
+// Anime un élément individuel avec un délai — plusieurs Stagger dans une même
+// section apparaissent donc l'un après l'autre, comme un diaporama Canva.
+function Stagger({ delay = 0, children }: { delay?: number; children: React.ReactNode }) {
+  const visible = useContext(RevealContext);
+  return (
     <div
-      ref={ref}
-      className="transition-all duration-1000 ease-out"
+      className="transition-all duration-700 ease-out"
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(32px)",
+        transform: visible ? "translateY(0)" : "translateY(22px)",
+        transitionDelay: `${delay}ms`,
       }}
     >
       {children}
@@ -211,30 +224,40 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           className="absolute left-1/2 -translate-x-1/2 w-[55%] h-[4.5%]"
           style={{ top: "78.5%" }}
         />
+      </section>
+      <Stagger delay={400}>
         <p className="text-center pt-3 pb-4 px-6">
           <span className="block font-serif text-base font-semibold text-terra">Église ICC</span>
           <span className="block font-sans text-[0.6rem] tracking-[.1em] text-taupe mt-1">
             Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
           </span>
         </p>
-      </section>
+      </Stagger>
       </Reveal>
 
       {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
       <Reveal>
       <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center">
-        <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
-        <div className="aspect-video overflow-hidden shadow-lg">
-          <iframe
-            className="w-full h-full"
-            src="https://www.youtube.com/embed/t7owFiihXgg"
-            title="You Know My Name - Tasha Cobbs Leonard"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-        <p className="font-serif italic text-taupe text-sm mt-4">You Know My Name</p>
-        <p className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe/70 mt-1">Tasha Cobbs Leonard ft. Jimi Cravity</p>
+        <Stagger delay={0}>
+          <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
+        </Stagger>
+        <Stagger delay={200}>
+          <div className="aspect-video overflow-hidden shadow-lg">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/t7owFiihXgg"
+              title="You Know My Name - Tasha Cobbs Leonard"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </Stagger>
+        <Stagger delay={400}>
+          <p className="font-serif italic text-taupe text-sm mt-4">You Know My Name</p>
+        </Stagger>
+        <Stagger delay={550}>
+          <p className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe/70 mt-1">Tasha Cobbs Leonard ft. Jimi Cravity</p>
+        </Stagger>
       </section>
       </Reveal>
 
@@ -244,16 +267,26 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={577} className="w-full h-[577px] object-cover" />
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <p className="font-script text-3xl text-ivory/90 -mb-1 uppercase">le</p>
-          <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
-          <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
-          <Countdown />
-          <div className="flex justify-center gap-8 mt-2 font-sans text-[0.55rem] tracking-[.2em] uppercase text-champagne/70">
-            <span>Jours</span>
-            <span>Heures</span>
-            <span>Min</span>
-            <span>Sec</span>
-          </div>
+          <Stagger delay={0}>
+            <p className="font-script text-3xl text-ivory/90 -mb-1 uppercase">le</p>
+          </Stagger>
+          <Stagger delay={200}>
+            <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
+          </Stagger>
+          <Stagger delay={400}>
+            <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
+          </Stagger>
+          <Stagger delay={600}>
+            <Countdown />
+          </Stagger>
+          <Stagger delay={800}>
+            <div className="flex justify-center gap-8 mt-2 font-sans text-[0.55rem] tracking-[.2em] uppercase text-champagne/70">
+              <span>Jours</span>
+              <span>Heures</span>
+              <span>Min</span>
+              <span>Sec</span>
+            </div>
+          </Stagger>
         </div>
       </section>
       </Reveal>
@@ -276,18 +309,22 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       {/* LA JOURNÉE — titre + icônes du Canva, horaires réels et corrects */}
       <Reveal>
       <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-16">
-        <div className="max-w-[200px] mx-auto mb-10">
-          <Image src="/canva/journee-title.png" alt="La journée" width={372} height={185} className="w-full h-auto" />
-        </div>
+        <Stagger delay={0}>
+          <div className="max-w-[200px] mx-auto mb-10">
+            <Image src="/canva/journee-title.png" alt="La journée" width={372} height={185} className="w-full h-auto" />
+          </div>
+        </Stagger>
         <div className="max-w-[260px] mx-auto flex flex-col gap-8 border-l border-blush pl-6">
           {TIMELINE.map((step, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <Image src={step.icon} alt="" width={40} height={40} className="w-9 h-9 shrink-0 -ml-[3.1rem]" />
-              <div>
-                <p className="font-serif text-lg text-terra">{step.time}</p>
-                <p className="font-sans text-sm tracking-wide uppercase text-choco">{step.title}</p>
+            <Stagger key={i} delay={250 + i * 180}>
+              <div className="flex items-center gap-4">
+                <Image src={step.icon} alt="" width={40} height={40} className="w-9 h-9 shrink-0 -ml-[3.1rem]" />
+                <div>
+                  <p className="font-serif text-lg text-terra">{step.time}</p>
+                  <p className="font-sans text-sm tracking-wide uppercase text-choco">{step.title}</p>
+                </div>
               </div>
-            </div>
+            </Stagger>
           ))}
         </div>
       </section>
@@ -433,10 +470,14 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <Image src="/canva/closing-real.jpg" alt="Steeve et Edna" fill className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
         <div className="relative z-10 text-center pb-14">
-          <p className="font-serif italic text-champagne text-lg">Avec amour</p>
-          <p className="font-script text-ivory" style={{ fontSize: "clamp(2.4rem,7vw,3.2rem)" }}>
-            Steeve &amp; Edna
-          </p>
+          <Stagger delay={200}>
+            <p className="font-serif italic text-champagne text-lg">Avec amour</p>
+          </Stagger>
+          <Stagger delay={450}>
+            <p className="font-script text-ivory" style={{ fontSize: "clamp(2.4rem,7vw,3.2rem)" }}>
+              Steeve &amp; Edna
+            </p>
+          </Stagger>
         </div>
       </section>
       </Reveal>
