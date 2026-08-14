@@ -8,6 +8,10 @@ export type GuestV2 = {
 // Invités du "nouveau" site (design Canva) — mêmes 24 personnes que le site original,
 // mais avec des liens DIFFÉRENTS. Le site original (/invitation/[token]) ne change jamais.
 export const guestsV2: GuestV2[] = [
+  // --- Compte de TEST uniquement (ne pas envoyer) ---
+  { token: "test-demo-3acc", name: "Test", maxCompanions: 3, companions: ["Luce", "Swaan"] },
+
+  // --- Vrais invités ---
   { token: "jean-hu66", name: "Jean", maxCompanions: 1, companions: [] },
   { token: "rodrigue-go90", name: "Rodrigue", maxCompanions: 1, companions: ["Anyela"] },
   { token: "williams-952p", name: "Williams", maxCompanions: 1, companions: ["Mya"] },
