@@ -205,7 +205,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={577} className="w-full h-[577px] object-cover" />
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-          <p className="font-script text-3xl text-ivory/90 -mb-1">le</p>
+          <p className="font-script text-3xl text-ivory/90 -mb-1 uppercase">le</p>
           <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
           <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
           <Countdown />
