@@ -285,20 +285,20 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       {/* HERO — image Canva + bloc église superposé sur la photo, au-dessus du bouquet bas-droite */}
       <Reveal>
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
-        <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
-        <div className="absolute left-[12%]" style={{ top: "80.5%" }}>
-          <Stagger delay={200}>
-            <a
-              href={CHURCH_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-terra text-ivory font-sans text-[0.62rem] tracking-[.12em] uppercase px-5 py-2.5 shadow-md hover:bg-rose-dk transition-all"
-            >
-              📍 Église ICC — Google Maps
-            </a>
-          </Stagger>
-        </div>
+        <Image src="/canva/hero-v2.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
       </section>
+      <div className="w-full max-w-sm mx-auto bg-ivory px-6 pb-10 pt-2 text-center">
+        <Stagger delay={200}>
+          <a
+            href={CHURCH_MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 bg-terra text-ivory font-sans text-sm tracking-[.15em] uppercase px-8 py-4 shadow-md hover:bg-rose-dk transition-all w-full"
+          >
+            📍 Église ICC — Google Maps
+          </a>
+        </Stagger>
+      </div>
       </Reveal>
 
       {/* MUSIQUE — vidéo uniquement, sans le label "Notre chanson" */}
