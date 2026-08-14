@@ -291,32 +291,6 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       </Stagger>
       </Reveal>
 
-      {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
-      <Reveal>
-      <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center">
-        <Stagger delay={0}>
-          <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
-        </Stagger>
-        <Stagger delay={200}>
-          <div className="aspect-video overflow-hidden shadow-lg">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/t7owFiihXgg"
-              title="You Know My Name - Tasha Cobbs Leonard"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
-        </Stagger>
-        <Stagger delay={400}>
-          <p className="font-serif italic text-taupe text-sm mt-4">You Know My Name</p>
-        </Stagger>
-        <Stagger delay={550}>
-          <p className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe/70 mt-1">Tasha Cobbs Leonard ft. Jimi Cravity</p>
-        </Stagger>
-      </section>
-      </Reveal>
-
       {/* COMPTE À REBOURS — même largeur de carte que les autres sections */}
       <Reveal>
       <section className="relative w-full max-w-sm mx-auto overflow-hidden">
