@@ -45,7 +45,7 @@ export const guestsV2: GuestV2[] = [
   { token: "sam-3rbc", name: "Sam", maxCompanions: 0, companions: [] },
   { token: "nathou-gw4e", name: "Nathou", maxCompanions: 0, companions: [] },
   { token: "lyta-m9qw", name: "Lyta", maxCompanions: 0, companions: [] },
-  { token: "dya-oto2", name: "Dya", maxCompanions: 0, companions: [] },
+  { token: "dia-oto2", name: "Dia", maxCompanions: 0, companions: [] },
 ];
 
 export function getGuestV2ByToken(token: string): GuestV2 | undefined {
