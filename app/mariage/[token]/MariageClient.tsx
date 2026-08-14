@@ -319,24 +319,24 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
       {/* COMPTE À REBOURS — même largeur de carte que les autres sections */}
       <Reveal>
-      <section className="relative w-full max-w-sm mx-auto overflow-hidden">
-        <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={577} className="w-full h-[577px] object-cover" />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+      <section className="relative w-full max-w-sm mx-auto min-h-[85vh] overflow-hidden">
+        <Image src="/canva/countdown-bg.jpg" alt="" fill sizes="384px" className="object-cover object-[center_30%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-[85vh] px-6 py-16 text-center">
           <Stagger delay={0}>
-            <p className="font-script text-3xl text-ivory/90 -mb-1 uppercase">le</p>
+            <p className="font-script text-4xl text-ivory leading-none">le</p>
           </Stagger>
           <Stagger delay={200}>
-            <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
+            <h2 className="font-serif text-xl tracking-[.25em] uppercase text-ivory mt-4">Compte à rebours</h2>
           </Stagger>
           <Stagger delay={400}>
-            <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
+            <p className="font-serif italic text-champagne text-sm mt-2 mb-10">jusqu&apos;au jour J a commencé…</p>
           </Stagger>
           <Stagger delay={600}>
             <Countdown />
           </Stagger>
           <Stagger delay={800}>
-            <div className="flex justify-center gap-8 mt-2 font-sans text-[0.55rem] tracking-[.2em] uppercase text-champagne/70">
+            <div className="flex justify-center gap-10 mt-3 font-sans text-[0.6rem] tracking-[.25em] uppercase text-champagne">
               <span>Jours</span>
               <span>Heures</span>
               <span>Min</span>
