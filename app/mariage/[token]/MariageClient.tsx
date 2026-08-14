@@ -174,9 +174,10 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         />
       </section>
 
-      {/* MUSIQUE */}
-      <section className="py-10 px-6 bg-ivory text-center">
-        <div className="max-w-sm mx-auto aspect-video">
+      {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
+      <section className="w-full max-w-sm mx-auto bg-ivory px-6 py-10 text-center border-x border-blush">
+        <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
+        <div className="aspect-video overflow-hidden shadow-lg">
           <iframe
             className="w-full h-full"
             src="https://www.youtube.com/embed/t7owFiihXgg"
@@ -185,14 +186,15 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
             allowFullScreen
           />
         </div>
-        <p className="font-serif italic text-taupe text-sm mt-3">You Know My Name — Tasha Cobbs Leonard ft. Jimi Cravity</p>
+        <p className="font-serif italic text-taupe text-sm mt-4">You Know My Name</p>
+        <p className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe/70 mt-1">Tasha Cobbs Leonard ft. Jimi Cravity</p>
       </section>
 
-      {/* COMPTE À REBOURS — vraie photo Canva en fond + vrai décompte en direct par-dessus */}
-      <section className="relative py-16 px-6 text-center overflow-hidden">
-        <Image src="/canva/countdown-bg.jpg" alt="" fill className="object-cover" />
+      {/* COMPTE À REBOURS — même largeur de carte que les autres sections */}
+      <section className="relative w-full max-w-sm mx-auto overflow-hidden">
+        <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={577} className="w-full h-[577px] object-cover" />
         <div className="absolute inset-0 bg-black/55" />
-        <div className="relative z-10">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
           <p className="font-script text-3xl text-ivory/90 -mb-1">le</p>
           <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
           <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
@@ -307,19 +309,27 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
                       </div>
                       {Array.from({ length: companionCount }, (_, i) => i).map((i) => (
                         <div key={i} className="flex flex-col gap-3 mb-5">
-                          <input
-                            type="text"
-                            value={companionNames[i] ?? ""}
-                            onChange={(e) =>
-                              setCompanionNames((prev) => {
-                                const next = [...prev];
-                                next[i] = e.target.value;
-                                return next;
-                              })
-                            }
-                            placeholder={`Nom de l'accompagnant ${i + 1}`}
-                            className="w-full border border-blush bg-transparent px-4 py-2.5 font-serif text-choco focus:outline-none focus:border-rose"
-                          />
+                          <label className="block">
+                            <span className="font-sans text-[0.55rem] tracking-[.15em] uppercase text-taupe mb-1.5 block">
+                              Nom de l&apos;accompagnant {i + 1} <span className="text-rose">(modifiable)</span>
+                            </span>
+                            <div className="relative">
+                              <input
+                                type="text"
+                                value={companionNames[i] ?? ""}
+                                onChange={(e) =>
+                                  setCompanionNames((prev) => {
+                                    const next = [...prev];
+                                    next[i] = e.target.value;
+                                    return next;
+                                  })
+                                }
+                                placeholder={`Nom de l'accompagnant ${i + 1}`}
+                                className="w-full border border-blush bg-blush-lt/40 px-4 py-2.5 pr-10 font-serif text-choco focus:outline-none focus:border-rose focus:bg-ivory"
+                              />
+                              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-rose text-sm pointer-events-none">✎</span>
+                            </div>
+                          </label>
                           <PersonMenuForm
                             person={companionMenus[i] ?? emptyMenu()}
                             onChange={(p) =>
