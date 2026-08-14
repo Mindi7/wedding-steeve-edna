@@ -176,10 +176,11 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           className="absolute left-1/2 -translate-x-1/2 w-[55%] h-[4.5%]"
           style={{ top: "78.5%" }}
         />
-        <p className="text-center font-sans text-[0.6rem] tracking-[.1em] text-taupe pt-2 pb-4 px-6">
-          Cérémonie religieuse — Église ICC
-          <br />
-          Rue de la Cotonnière, 97351 La Persévérance
+        <p className="text-center pt-3 pb-4 px-6">
+          <span className="block font-serif text-base font-semibold text-terra">Église ICC</span>
+          <span className="block font-sans text-[0.6rem] tracking-[.1em] text-taupe mt-1">
+            Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
+          </span>
         </p>
       </section>
 
