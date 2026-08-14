@@ -9,7 +9,11 @@ const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
 const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string;
 
-const MAPS_URL =
+const CHURCH_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent("Rue de la Cotonnière, 97351 La Persévérance");
+
+const VENUE_MAPS_URL =
   "https://www.google.com/maps/search/97355/@4.910319805145264,-52.458709716796875,17z?hl=fr";
 
 const ENTREE_OPTIONS = [
@@ -160,18 +164,21 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
   }
 
   return (
-    <main className="bg-choco">
-      {/* HERO — image Canva exacte + bouton Google Maps cliquable par-dessus */}
-      <section className="relative w-full max-w-sm mx-auto">
+    <main className="bg-ivory">
+      {/* HERO — image Canva exacte + bouton Google Maps cliquable par-dessus + adresse église visible */}
+      <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
         <a
-          href={MAPS_URL}
+          href={CHURCH_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Google Maps"
           className="absolute left-1/2 -translate-x-1/2 w-[55%] h-[4.5%]"
           style={{ top: "78.5%" }}
         />
+        <p className="text-center font-sans text-[0.6rem] tracking-[.1em] text-taupe pt-2 pb-4 px-6">
+          Cérémonie religieuse — Rue de la Cotonnière, 97351 La Persévérance
+        </p>
       </section>
 
       {/* MUSIQUE — présentée en carte, cohérente avec le reste */}
@@ -212,7 +219,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       <section className="relative w-full max-w-sm mx-auto bg-ivory">
         <Image src="/canva/venue.png" alt="Le lieu de réception" width={386} height={857} className="w-full h-auto" />
         <a
-          href={MAPS_URL}
+          href={VENUE_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Google Maps"
