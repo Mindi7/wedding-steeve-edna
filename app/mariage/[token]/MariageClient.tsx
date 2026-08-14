@@ -19,23 +19,17 @@ const ENTREE_OPTIONS = [
 const PLAT_OPTIONS = ["Gratin de banane jaune dachine", "Riz djon-djon"];
 const ACCOMPAGNEMENT_OPTIONS = ["Acoupa", "Fricassée de porc"];
 
-const PALETTE = [
-  { hex: "#C4622D", label: "Terracotta" },
-  { hex: "#5E4E38", label: "Rouille" },
-  { hex: "#C9A24B", label: "Doré" },
-];
-
 type Status = "idle" | "sending" | "sent" | "error";
 type PersonMenu = { name: string; entree: string; plat: string; accompagnement: string };
 function emptyMenu(name = ""): PersonMenu {
   return { name, entree: "", plat: "", accompagnement: "" };
 }
 
-function Countdown({ target, size = "lg" }: { target: string; size?: "lg" | "sm" }) {
+function Countdown() {
   const [t, setT] = useState({ d: "--", h: "--", m: "--", s: "--" });
   useEffect(() => {
     const tick = () => {
-      const diff = new Date(target).getTime() - Date.now();
+      const diff = new Date("2026-08-29T10:30:00").getTime() - Date.now();
       if (diff < 0) return;
       setT({
         d: String(Math.floor(diff / 86400000)).padStart(2, "0"),
@@ -47,29 +41,20 @@ function Countdown({ target, size = "lg" }: { target: string; size?: "lg" | "sm"
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [target]);
+  }, []);
 
-  const big = size === "lg";
   return (
-    <div className={`flex items-center justify-center ${big ? "gap-2 sm:gap-3" : "gap-1.5"}`}>
+    <div className="flex items-center justify-center gap-2 sm:gap-3">
       {[t.d, t.h, t.m, t.s].map((v, i) => (
         <span key={i} className="flex items-center">
-          <span
-            className={`font-serif font-light ${big ? "text-4xl sm:text-5xl" : "text-2xl"} ${
-              i === 3 ? "text-terra" : "text-ivory"
-            }`}
-          >
+          <span className={`font-serif font-light text-3xl sm:text-4xl ${i === 3 ? "text-terra" : "text-ivory"}`}>
             {v}
           </span>
-          {i < 3 && <span className={`font-serif text-ivory/60 mx-1 ${big ? "text-3xl" : "text-lg"}`}>:</span>}
+          {i < 3 && <span className="font-serif text-ivory/50 mx-1 text-2xl">:</span>}
         </span>
       ))}
     </div>
   );
-}
-
-function ScriptLabel({ children }: { children: React.ReactNode }) {
-  return <p className="font-script text-3xl text-choco/90 -mb-2 relative z-10">{children}</p>;
 }
 
 function PersonMenuForm({
@@ -110,6 +95,13 @@ function PersonMenuForm({
     </div>
   );
 }
+
+const TIMELINE = [
+  { time: "10:30", title: "Cérémonie religieuse", icon: "/canva/icon-church.png" },
+  { time: "12:00", title: "Séance photo", icon: "/canva/icon-camera.png" },
+  { time: "18:30", title: "Dîner de réception", icon: "/canva/icon-plate.png" },
+  { time: "22:00", title: "Soirée dansante", icon: "/canva/icon-speaker.png" },
+];
 
 export default function MariageClient({ guest }: { guest: GuestV2 }) {
   const [displayName, setDisplayName] = useState(guest.name);
@@ -169,61 +161,21 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
   return (
     <main className="bg-choco">
-      {/* HERO */}
-      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-10 px-4">
-        <Image src="/photos/couple-hero.jpg" alt="" fill priority className="object-cover opacity-60" />
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="relative z-10 w-full max-w-sm bg-ivory px-6 py-8 text-center shadow-2xl overflow-hidden">
-          <img
-            src="/photos/floral-top.png"
-            alt=""
-            className="absolute top-0 right-0 w-32 opacity-95"
-            style={{ maskImage: "linear-gradient(225deg, black 55%, transparent 85%)", WebkitMaskImage: "linear-gradient(225deg, black 55%, transparent 85%)" }}
-          />
-          <p className="font-sans text-[0.52rem] tracking-[.3em] uppercase text-rose-dk mt-2 mb-3 relative z-10">
-            En présence de leurs familles
-          </p>
-          <h1 className="relative font-script text-terra leading-none my-1 flex items-center justify-center" style={{ fontSize: "clamp(2.4rem,8vw,3rem)" }}>
-            Grand
-            <svg viewBox="0 0 60 60" className="w-9 h-9 mx-1 -mb-2 text-blush" fill="none" stroke="currentColor" strokeWidth="3">
-              <path d="M30 52 C 8 36, 4 18, 18 10 C 26 5, 30 14, 30 20 C 30 14, 34 5, 42 10 C 56 18, 52 36, 30 52 Z" />
-            </svg>
-            Oui
-          </h1>
-          <p className="font-serif tracking-[.1em] text-choco mt-3 relative z-10">
-            <span className="text-xl">STEEVE</span> <span className="italic text-rose-dk">et</span> <span className="text-xl">EDNA</span>
-          </p>
-          <p className="font-sans text-[0.5rem] tracking-[.2em] uppercase text-taupe mt-3 leading-relaxed relative z-10">
-            vous invitent
-            <br />à la célébration de leur mariage
-          </p>
-          <p className="font-serif text-[0.7rem] tracking-[.3em] uppercase text-choco mt-4 relative z-10">— Août —</p>
-          <div className="flex items-center justify-center gap-4 mt-1 relative z-10">
-            <span className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe border-t border-blush pt-1">Samedi</span>
-            <span className="font-serif text-3xl text-choco">29</span>
-            <span className="font-sans text-[0.6rem] tracking-[.15em] uppercase text-taupe border-t border-blush pt-1">à 10h30</span>
-          </div>
-          <p className="font-serif text-lg text-choco mt-1 relative z-10">2026</p>
-          <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative z-10 inline-block mt-4 bg-terra text-ivory font-sans text-[0.62rem] tracking-[.15em] uppercase px-5 py-2.5 hover:bg-rose-dk transition-all"
-          >
-            📍 Google Maps
-          </a>
-          <img
-            src="/photos/floral-bottom.png"
-            alt=""
-            className="absolute bottom-0 left-0 w-32 opacity-95"
-            style={{ maskImage: "linear-gradient(45deg, black 55%, transparent 85%)", WebkitMaskImage: "linear-gradient(45deg, black 55%, transparent 85%)" }}
-          />
-        </div>
+      {/* HERO — image Canva exacte + bouton Google Maps cliquable par-dessus */}
+      <section className="relative w-full max-w-sm mx-auto">
+        <Image src="/canva/hero.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Google Maps"
+          className="absolute left-1/2 -translate-x-1/2 w-[55%] h-[4.5%]"
+          style={{ top: "78.5%" }}
+        />
       </section>
 
       {/* MUSIQUE */}
-      <section className="py-14 px-6 bg-ivory text-center">
-        <p className="font-sans text-[0.6rem] tracking-[.3em] uppercase text-rose mb-4">Notre chanson</p>
+      <section className="py-10 px-6 bg-ivory text-center">
         <div className="max-w-sm mx-auto aspect-video">
           <iframe
             className="w-full h-full"
@@ -236,15 +188,15 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <p className="font-serif italic text-taupe text-sm mt-3">You Know My Name — Tasha Cobbs Leonard ft. Jimi Cravity</p>
       </section>
 
-      {/* COMPTE À REBOURS */}
-      <section className="relative py-20 px-6 text-center overflow-hidden">
-        <Image src="/photos/bg-countdown.jpg" alt="" fill className="object-cover" />
+      {/* COMPTE À REBOURS — vraie photo Canva en fond + vrai décompte en direct par-dessus */}
+      <section className="relative py-16 px-6 text-center overflow-hidden">
+        <Image src="/canva/countdown-bg.jpg" alt="" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/55" />
         <div className="relative z-10">
-          <ScriptLabel>le</ScriptLabel>
+          <p className="font-script text-3xl text-ivory/90 -mb-1">le</p>
           <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-ivory mt-1">Compte à rebours</h2>
           <p className="font-serif italic text-champagne/80 text-sm mb-8">jusqu&apos;au jour J a commencé…</p>
-          <Countdown target="2026-08-29T10:30:00" />
+          <Countdown />
           <div className="flex justify-center gap-8 mt-2 font-sans text-[0.55rem] tracking-[.2em] uppercase text-champagne/70">
             <span>Jours</span>
             <span>Heures</span>
@@ -254,78 +206,49 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         </div>
       </section>
 
-      {/* LIEU DE RÉCEPTION */}
-      <section className="relative py-16 px-6 text-center overflow-hidden">
-        <Image src="/photos/bg-venue.jpg" alt="" fill className="object-cover opacity-25" />
-        <div className="relative z-10">
-          <ScriptLabel>le</ScriptLabel>
-          <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-choco mt-1 mb-1">Lieu de réception</h2>
-          <p className="font-serif italic text-taupe text-sm mb-5">Détails du lieu à venir très prochainement</p>
-          <a
-            href={MAPS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-terra text-ivory font-sans text-[0.62rem] tracking-[.15em] uppercase px-5 py-2.5 hover:bg-rose-dk transition-all mb-8"
-          >
-            📍 Google Maps
-          </a>
-          <div className="max-w-xs mx-auto">
-            <Image src="/photos/venue-aisle.jpg" alt="" width={400} height={500} className="w-full h-auto object-cover" />
-          </div>
-        </div>
+      {/* LIEU DE RÉCEPTION — image Canva exacte + bouton Google Maps cliquable */}
+      <section className="relative w-full max-w-sm mx-auto bg-ivory">
+        <Image src="/canva/venue.png" alt="Le lieu de réception" width={386} height={857} className="w-full h-auto" />
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Google Maps"
+          className="absolute left-1/2 -translate-x-1/2 w-[45%] h-[4%]"
+          style={{ top: "29%" }}
+        />
       </section>
 
-      {/* LA JOURNÉE */}
-      <section className="relative py-16 px-6 overflow-hidden">
-        <Image src="/photos/bg-journee.jpg" alt="" fill className="object-cover opacity-15" />
-        <div className="relative z-10 text-center">
-          <ScriptLabel>la</ScriptLabel>
-          <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-choco mt-1 mb-10">Journée</h2>
-          <div className="max-w-xs mx-auto flex flex-col gap-8 text-left border-l border-blush pl-6">
-            {[
-              { time: "10h30", title: "Cérémonie religieuse" },
-              { time: "—", title: "Séance photo", desc: "Après la cérémonie religieuse" },
-              { time: "18h30", title: "Dîner de réception" },
-              { time: "22h00", title: "Soirée dansante" },
-            ].map((s, i) => (
-              <div key={i} className="relative">
-                <span className="absolute -left-[27px] top-1.5 w-2.5 h-2.5 rounded-full bg-terra" />
-                <p className="font-serif text-lg text-terra">{s.time}</p>
-                <p className="font-sans text-sm tracking-wide uppercase text-choco">{s.title}</p>
-                {s.desc && <p className="font-serif italic text-taupe text-xs mt-0.5">{s.desc}</p>}
+      {/* LA JOURNÉE — titre + icônes du Canva, horaires réels et corrects */}
+      <section className="py-16 px-6 bg-ivory">
+        <div className="max-w-[200px] mx-auto mb-10">
+          <Image src="/canva/journee-title.png" alt="La journée" width={372} height={185} className="w-full h-auto" />
+        </div>
+        <div className="max-w-xs mx-auto flex flex-col gap-8 border-l border-blush pl-6">
+          {TIMELINE.map((step, i) => (
+            <div key={i} className="flex items-center gap-4">
+              <Image src={step.icon} alt="" width={40} height={40} className="w-9 h-9 shrink-0 -ml-[3.1rem]" />
+              <div>
+                <p className="font-serif text-lg text-terra">{step.time}</p>
+                <p className="font-sans text-sm tracking-wide uppercase text-choco">{step.title}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* DÉTAILS / DRESS CODE */}
-      <section className="relative py-16 px-6 text-center overflow-hidden">
-        <Image src="/photos/bg-details.jpg" alt="" fill className="object-cover opacity-15" />
-        <div className="relative z-10">
-          <ScriptLabel>les</ScriptLabel>
-          <h2 className="font-serif text-2xl tracking-[.2em] uppercase text-choco mt-1 mb-8">Détails</h2>
-          <div className="flex justify-center gap-3 mb-4">
-            {PALETTE.map((c) => (
-              <span key={c.hex} className="w-9 h-9 rounded-full border border-blush" style={{ backgroundColor: c.hex }} />
-            ))}
-          </div>
-          <p className="font-serif text-xl text-terra mb-2">Dress code</p>
-          <p className="font-serif italic text-taupe max-w-xs mx-auto text-sm leading-relaxed">
-            Tenue semi-formelle et élégante. N&apos;hésitez pas à ajouter une touche d&apos;orange brûlé
-            afin de vous accorder à notre thème.
-          </p>
-        </div>
+      {/* DÉTAILS / DRESS CODE — image Canva exacte */}
+      <section className="w-full max-w-sm mx-auto bg-ivory">
+        <Image src="/canva/details.png" alt="Détails et dress code" width={386} height={835} className="w-full h-auto" />
       </section>
 
-      {/* RSVP */}
-      <section className="relative py-16 px-6 overflow-hidden">
-        <Image src="/photos/bg-rsvp.jpg" alt="" fill className="object-cover opacity-10" />
-        <div className="relative z-10 max-w-lg mx-auto bg-ivory border border-blush px-6 sm:px-10 py-12 text-center">
-          <ScriptLabel>votre</ScriptLabel>
-          <h2 className="font-serif text-3xl tracking-[.15em] uppercase text-terra mt-1 mb-1">Réponse</h2>
-          <p className="font-serif italic text-taupe text-sm mb-8">Avant le 20 Août 2026</p>
+      {/* RSVP — en-tête Canva exact, puis vrai formulaire fonctionnel */}
+      <section className="bg-ivory">
+        <div className="w-full max-w-sm mx-auto">
+          <Image src="/canva/rsvp-header.png" alt="Votre réponse" width={386} height={741} className="w-full h-auto" />
+        </div>
 
+        <div className="max-w-lg mx-auto bg-ivory border border-blush px-6 sm:px-10 py-10 text-center -mt-2">
           {status !== "sent" && (
             <>
               <label className="block text-left mb-6">
@@ -436,16 +359,9 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         </div>
       </section>
 
-      {/* CLÔTURE */}
-      <section className="relative min-h-[70dvh] flex items-end justify-center overflow-hidden">
-        <Image src="/photos/couple-hero.jpg" alt="Steeve et Edna" fill className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="relative z-10 text-center pb-14">
-          <p className="font-serif italic text-champagne text-lg">Avec amour</p>
-          <p className="font-script text-ivory" style={{ fontSize: "clamp(2.4rem,7vw,3.2rem)" }}>
-            Steeve &amp; Edna
-          </p>
-        </div>
+      {/* CLÔTURE — image Canva exacte */}
+      <section className="relative w-full">
+        <Image src="/canva/closing.jpg" alt="Avec amour, Steeve et Edna" width={1200} height={705} className="w-full h-auto" />
       </section>
     </main>
   );
