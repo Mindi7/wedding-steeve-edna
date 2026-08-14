@@ -284,8 +284,8 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
     <main className="bg-ivory">
       {/* HERO — image Canva d'origine (bouton stylé) + zone cliquable + nom de l'église à côté */}
       <Reveal>
-      <section className="relative w-full max-w-sm mx-auto bg-ivory">
-        <Image src="/canva/hero-v3.png" alt="Steeve et Edna" width={386} height={813} className="w-full h-auto" priority />
+      <section className="relative w-full max-w-sm mx-auto bg-ivory aspect-[386/813]">
+        <Image src="/canva/hero-v3.png" alt="Steeve et Edna" fill className="object-contain" priority />
         <a
           href={CHURCH_MAPS_URL}
           target="_blank"
