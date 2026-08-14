@@ -179,7 +179,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         <div className="max-w-sm mx-auto aspect-video">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/videoseries?list=RDMM"
+            src="https://www.youtube.com/embed/t7owFiihXgg"
             title="You Know My Name - Tasha Cobbs Leonard"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
