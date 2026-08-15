@@ -334,12 +334,12 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       </section>
       </Reveal>
 
-      {/* COMPTE À REBOURS — même forme (ratio) que toutes les autres pages du Canva */}
+      {/* COMPTE À REBOURS — même forme (hauteur naturelle) que la page musique */}
       <Reveal>
-      <section className="relative w-full max-w-sm mx-auto aspect-[386/741] overflow-hidden">
-        <Image src="/canva/countdown-bg.jpg" alt="" fill sizes="384px" className="object-cover object-[center_30%]" />
+      <section className="relative w-full max-w-sm mx-auto overflow-hidden">
+        <Image src="/canva/countdown-bg.jpg" alt="" width={386} height={500} className="w-full h-auto object-cover object-[center_30%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <Stagger delay={0}>
             <p className="font-script text-4xl text-ivory leading-none">le</p>
           </Stagger>
