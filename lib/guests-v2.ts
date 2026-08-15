@@ -26,7 +26,7 @@ export const guestsV2: GuestV2[] = [
   { token: "melithe-165z", name: "Melithe", maxCompanions: 0, companions: [] },
   { token: "vanina-7q04", name: "Vanina", maxCompanions: 0, companions: [] },
   { token: "francesca-67bo", name: "Francesca", maxCompanions: 3, companions: ["Géryane", "Pèpette", "Lalann"] },
-  { token: "patricia-id7g", name: "Patricia", maxCompanions: 1, companions: [] },
+  { token: "patricia-7n9s", name: "Patricia", maxCompanions: 1, companions: [] },
   { token: "marie-louise-14j4", name: "Marie-Louise", maxCompanions: 0, companions: [] },
   { token: "onais-oh34", name: "Onaïs", maxCompanions: 0, companions: [] },
   { token: "jessica-8q9z", name: "Jessica", maxCompanions: 3, companions: ["Simon Edwens", "Dumorin jean-julien", "Maëva"] },
