@@ -47,6 +47,16 @@ export const guestsV2: GuestV2[] = [
   { token: "lyta-m9qw", name: "Lyta", maxCompanions: 0, companions: [] },
   { token: "dia-oto2", name: "Dia", maxCompanions: 0, companions: [] },
   { token: "rudjy-fb79", name: "Rudjy", maxCompanions: 0, companions: [] },
+
+  // --- Ajoutés le 15/08 ---
+  { token: "ata-lxt5", name: "Ata", maxCompanions: 0, companions: [] },
+  { token: "bruno-51ny", name: "Bruno", maxCompanions: 0, companions: [] },
+  { token: "orvilan-ry5p", name: "Orvilan", maxCompanions: 0, companions: [] },
+  { token: "irene-az1s", name: "Irène", maxCompanions: 0, companions: [] },
+  { token: "fanie-dyuw", name: "Fanie", maxCompanions: 0, companions: [] },
+  { token: "clairmitha-z34h", name: "Clairmitha", maxCompanions: 0, companions: [] },
+  { token: "mere-de-steeve-y5vo", name: "Mère de Steeve", maxCompanions: 0, companions: [] },
+  { token: "pere-de-steeve-lzkq", name: "Père de Steeve", maxCompanions: 0, companions: [] },
 ];
 
 export function getGuestV2ByToken(token: string): GuestV2 | undefined {
