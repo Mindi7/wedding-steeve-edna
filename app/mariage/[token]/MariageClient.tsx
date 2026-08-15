@@ -55,15 +55,22 @@ function Countdown() {
     return () => clearInterval(id);
   }, []);
 
+  const units = [
+    { value: t.d, label: "Jours" },
+    { value: t.h, label: "Heures" },
+    { value: t.m, label: "Min" },
+    { value: t.s, label: "Sec" },
+  ];
+
   return (
-    <div className="flex items-center justify-center gap-2 sm:gap-3">
-      {[t.d, t.h, t.m, t.s].map((v, i) => (
-        <span key={i} className="flex items-center">
-          <span className={`font-serif font-light text-3xl sm:text-4xl ${i === 3 ? "text-terra" : "text-ivory"}`}>
-            {v}
+    <div className="flex items-start justify-center gap-3 sm:gap-4">
+      {units.map((u, i) => (
+        <div key={i} className="flex flex-col items-center">
+          <span className={`font-serif font-light text-3xl sm:text-4xl leading-none ${i === 3 ? "text-terra" : "text-ivory"}`}>
+            {u.value}
           </span>
-          {i < 3 && <span className="font-serif text-ivory/50 mx-1 text-2xl">:</span>}
-        </span>
+          <span className="font-sans text-[0.55rem] tracking-[.2em] uppercase text-champagne mt-2">{u.label}</span>
+        </div>
       ))}
     </div>
   );
@@ -346,14 +353,6 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           </Stagger>
           <Stagger delay={600}>
             <Countdown />
-          </Stagger>
-          <Stagger delay={800}>
-            <div className="flex justify-center gap-10 mt-3 font-sans text-[0.6rem] tracking-[.25em] uppercase text-champagne">
-              <span>Jours</span>
-              <span>Heures</span>
-              <span>Min</span>
-              <span>Sec</span>
-            </div>
           </Stagger>
         </div>
       </section>
