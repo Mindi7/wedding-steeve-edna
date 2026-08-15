@@ -180,6 +180,16 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
   );
   const [status, setStatus] = useState<Status>("idle");
 
+  // Empêche de répondre plusieurs fois : on retient, sur cet appareil, que ce lien
+  // personnel (token unique par invité) a déjà été utilisé pour confirmer une réponse.
+  const storageKey = `rsvp-envoye-${guest.token}`;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.localStorage.getItem(storageKey) !== "oui") return;
+    const id = setTimeout(() => setStatus("sent"), 0);
+    return () => clearTimeout(id);
+  }, [storageKey]);
+
   // Tant que "Oui" est choisi, il faut que le menu de l'invité ET de chaque accompagnant
   // soit entièrement rempli (entrée + plat + accompagnement) avant de pouvoir confirmer.
   const menusComplete =
@@ -281,6 +291,9 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, { from_name: name, reponse }, { publicKey: PUBLIC_KEY });
       setStatus("sent");
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(storageKey, "oui");
+      }
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
@@ -535,6 +548,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
           <p className="font-sans text-xs text-sage mt-6 min-h-[16px]">
             {status === "sent" && choice === "yes" && "Merci, votre présence illuminera cette journée ✿"}
             {status === "sent" && choice === "no" && "Merci de nous avoir répondu, vous serez dans nos pensées"}
+            {status === "sent" && !choice && "Merci, votre réponse a déjà été enregistrée ✿"}
             {status === "error" && <span className="text-rose-dk">Une erreur est survenue, merci de réessayer dans un instant.</span>}
           </p>
           <p className="font-sans text-[0.65rem] tracking-[.2em] uppercase text-taupe mt-8">— {displayName.trim() || guest.name} —</p>
