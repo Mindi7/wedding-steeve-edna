@@ -301,13 +301,14 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
   }
 
   return (
-    <main className="bg-ivory">
-      {/* HERO — image Canva d'origine (bouton stylé intact) + nom de l'église juste à côté, bien lisible */}
-      <Reveal>
-      <section className="relative w-full max-w-sm mx-auto bg-ivory aspect-[386/813]">
-        <Image src="/canva/hero-v3.png" alt="Steeve et Edna" fill className="object-contain" priority />
-        <a
-          href={CHURCH_MAPS_URL}
+    <div className="min-h-dvh bg-blush-lt sm:py-10 sm:px-4">
+      <main className="bg-ivory sm:max-w-[430px] sm:mx-auto sm:shadow-2xl sm:overflow-hidden">
+        {/* HERO — image Canva d'origine (bouton stylé intact) + nom de l'église juste à côté, bien lisible */}
+        <Reveal>
+        <section className="relative w-full max-w-sm mx-auto bg-ivory aspect-[386/813]">
+          <Image src="/canva/hero-v3.png" alt="Steeve et Edna" fill className="object-contain" priority />
+          <a
+            href={CHURCH_MAPS_URL}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Google Maps — Église ICC"
@@ -573,6 +574,7 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
         </div>
       </section>
       </Reveal>
-    </main>
+      </main>
+    </div>
   );
 }
