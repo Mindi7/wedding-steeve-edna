@@ -334,14 +334,12 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
       </section>
       </Reveal>
 
-      {/* COMPTE À REBOURS — même largeur de carte que les autres sections */}
+      {/* COMPTE À REBOURS — même forme (ratio) que toutes les autres pages du Canva */}
       <Reveal>
-      <section className="relative w-full max-w-sm mx-auto overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src="/canva/countdown-bg.jpg" alt="" fill sizes="384px" className="object-cover object-[center_30%]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
-        </div>
-        <div className="relative z-10 flex flex-col items-center justify-center px-6 py-16 text-center">
+      <section className="relative w-full max-w-sm mx-auto aspect-[386/741] overflow-hidden">
+        <Image src="/canva/countdown-bg.jpg" alt="" fill sizes="384px" className="object-cover object-[center_30%]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
           <Stagger delay={0}>
             <p className="font-script text-4xl text-ivory leading-none">le</p>
           </Stagger>
