@@ -58,6 +58,7 @@ export const guestsV2: GuestV2[] = [
   { token: "mere-de-steeve-y5vo", name: "Mère de Steeve", maxCompanions: 0, companions: [] },
   { token: "pere-de-steeve-lzkq", name: "Père de Steeve", maxCompanions: 0, companions: [] },
   { token: "widner-g8y9", name: "Widner", maxCompanions: 0, companions: [] },
+  { token: "janette-biem", name: "Janette", maxCompanions: 1, companions: [] },
 ];
 
 export function getGuestV2ByToken(token: string): GuestV2 | undefined {
