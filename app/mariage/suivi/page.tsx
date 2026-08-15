@@ -96,101 +96,109 @@ export default function SuiviPage() {
 
   return (
     <main className="min-h-dvh bg-ivory px-4 py-10">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <p className="font-script text-3xl text-terra">Suivi RSVP</p>
+          <div>
+            <p className="font-script text-4xl text-terra leading-none">Suivi</p>
+            <p className="font-serif text-lg tracking-[.2em] uppercase text-choco mt-1">RSVP</p>
+          </div>
           <button
             onClick={loadData}
-            className="font-sans text-xs uppercase tracking-wide border border-blush px-4 py-2 hover:bg-blush-lt transition-all"
+            className="font-sans text-xs uppercase tracking-wide border border-blush px-4 py-2.5 hover:bg-blush-lt transition-all"
           >
-            {loading ? "..." : "Actualiser"}
+            {loading ? "..." : "↻ Actualiser"}
           </button>
         </div>
 
-        {error && <p className="text-rose-dk text-sm mb-6">{error}</p>}
+        {error && <p className="text-rose-dk text-sm mb-6 bg-rose/10 border border-rose/30 px-4 py-3">{error}</p>}
 
         {/* Résumé global */}
-        <div className="grid grid-cols-2 gap-3 mb-10">
-          <div className="bg-blush-lt border border-blush p-4 text-center">
-            <p className="font-serif text-3xl text-choco">{oui.length}</p>
-            <p className="font-sans text-[0.6rem] tracking-wide uppercase text-taupe">Personnes confirmées</p>
+        <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="bg-blush-lt border border-blush py-5 text-center">
+            <p className="font-serif text-4xl text-choco">{oui.length}</p>
+            <p className="font-sans text-[0.6rem] tracking-widest uppercase text-taupe mt-1">Confirmées</p>
           </div>
-          <div className="bg-blush-lt border border-blush p-4 text-center">
-            <p className="font-serif text-3xl text-choco">{non.length}</p>
-            <p className="font-sans text-[0.6rem] tracking-wide uppercase text-taupe">Réponses négatives</p>
+          <div className="bg-ivory border border-blush py-5 text-center">
+            <p className="font-serif text-4xl text-choco">{non.length}</p>
+            <p className="font-sans text-[0.6rem] tracking-widest uppercase text-taupe mt-1">Non venants</p>
           </div>
         </div>
 
         {/* Récap menu — prêt pour capture d'écran traiteur */}
-        <div className="bg-ivory border border-blush p-6 mb-10">
-          <p className="font-sans text-xs tracking-[.2em] uppercase text-rose mb-4">Récapitulatif menu — pour le traiteur</p>
-          <div className="grid gap-6 sm:grid-cols-3">
+        <div className="bg-ivory border border-blush p-6 mb-8">
+          <p className="font-sans text-[0.65rem] tracking-[.25em] uppercase text-rose mb-5 text-center">
+            Récapitulatif menu · pour le traiteur
+          </p>
+          <div className="flex flex-col gap-6">
             <div>
-              <p className="font-sans text-[0.65rem] tracking-wide uppercase text-taupe mb-2">Entrée</p>
-              {entreeCounts.length === 0 && <p className="text-xs text-taupe/70">—</p>}
+              <p className="font-serif text-sm text-terra font-semibold mb-2 pb-1 border-b border-blush">Entrée</p>
+              {entreeCounts.length === 0 && <p className="text-xs text-taupe/70">Aucune réponse pour l&apos;instant</p>}
               {entreeCounts.map(([label, n]) => (
-                <p key={label} className="font-serif text-sm text-choco mb-1">
-                  <span className="text-terra font-semibold">{n}×</span> {label}
+                <p key={label} className="font-serif text-sm text-choco mb-1.5 leading-snug">
+                  <span className="text-terra font-bold">{n}×</span> {label}
                 </p>
               ))}
             </div>
             <div>
-              <p className="font-sans text-[0.65rem] tracking-wide uppercase text-taupe mb-2">Plat</p>
-              {platCounts.length === 0 && <p className="text-xs text-taupe/70">—</p>}
+              <p className="font-serif text-sm text-terra font-semibold mb-2 pb-1 border-b border-blush">Plat de résistance</p>
+              {platCounts.length === 0 && <p className="text-xs text-taupe/70">Aucune réponse pour l&apos;instant</p>}
               {platCounts.map(([label, n]) => (
-                <p key={label} className="font-serif text-sm text-choco mb-1">
-                  <span className="text-terra font-semibold">{n}×</span> {label}
+                <p key={label} className="font-serif text-sm text-choco mb-1.5 leading-snug">
+                  <span className="text-terra font-bold">{n}×</span> {label}
                 </p>
               ))}
             </div>
             <div>
-              <p className="font-sans text-[0.65rem] tracking-wide uppercase text-taupe mb-2">Accompagnement</p>
-              {accCounts.length === 0 && <p className="text-xs text-taupe/70">—</p>}
+              <p className="font-serif text-sm text-terra font-semibold mb-2 pb-1 border-b border-blush">Accompagnement</p>
+              {accCounts.length === 0 && <p className="text-xs text-taupe/70">Aucune réponse pour l&apos;instant</p>}
               {accCounts.map(([label, n]) => (
-                <p key={label} className="font-serif text-sm text-choco mb-1">
-                  <span className="text-terra font-semibold">{n}×</span> {label}
+                <p key={label} className="font-serif text-sm text-choco mb-1.5 leading-snug">
+                  <span className="text-terra font-bold">{n}×</span> {label}
                 </p>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Détail par personne */}
-        <div className="bg-ivory border border-blush overflow-hidden">
-          <p className="font-sans text-xs tracking-[.2em] uppercase text-rose p-4 border-b border-blush">Détail par personne</p>
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-blush-lt text-[0.6rem] uppercase tracking-wide text-taupe">
-                <th className="p-3">Nom</th>
-                <th className="p-3">Rôle</th>
-                <th className="p-3">Réponse</th>
-                <th className="p-3">Entrée</th>
-                <th className="p-3">Plat</th>
-                <th className="p-3">Accompagnement</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((r, i) => (
-                <tr key={i} className="border-t border-blush/60 text-sm font-serif text-choco">
-                  <td className="p-3 font-medium">{r.nom}</td>
-                  <td className="p-3 text-taupe text-xs">{r.role}</td>
-                  <td className="p-3">
-                    <span className={r.reponse === "Oui" ? "text-sage" : "text-rose-dk"}>{r.reponse}</span>
-                  </td>
-                  <td className="p-3 text-xs">{r.entree || "—"}</td>
-                  <td className="p-3 text-xs">{r.plat || "—"}</td>
-                  <td className="p-3 text-xs">{r.accompagnement || "—"}</td>
-                </tr>
-              ))}
-              {rows.length === 0 && !loading && (
-                <tr>
-                  <td colSpan={6} className="p-6 text-center text-taupe text-sm">
-                    Aucune réponse pour l&apos;instant.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+        {/* Détail par personne — cartes individuelles, texte jamais coupé */}
+        <div>
+          <p className="font-sans text-[0.65rem] tracking-[.25em] uppercase text-rose mb-4 text-center">Détail par personne</p>
+          <div className="flex flex-col gap-3">
+            {rows.map((r, i) => (
+              <div key={i} className="bg-ivory border border-blush p-5">
+                <div className="flex items-center justify-between mb-1">
+                  <p className="font-serif text-lg text-choco font-semibold">{r.nom}</p>
+                  <span
+                    className={`font-sans text-[0.6rem] tracking-wide uppercase px-2.5 py-1 ${
+                      r.reponse === "Oui" ? "bg-sage/20 text-sage" : "bg-rose/15 text-rose-dk"
+                    }`}
+                  >
+                    {r.reponse === "Oui" ? "Confirmé" : "Non venant"}
+                  </span>
+                </div>
+                <p className="font-sans text-[0.65rem] text-taupe uppercase tracking-wide mb-3">{r.role}</p>
+                {r.reponse === "Oui" && (
+                  <div className="flex flex-col gap-1.5 pt-3 border-t border-blush/60">
+                    <p className="font-serif text-sm text-choco leading-snug">
+                      <span className="text-[0.6rem] tracking-wide uppercase text-taupe mr-2">Entrée</span>
+                      {r.entree || "—"}
+                    </p>
+                    <p className="font-serif text-sm text-choco leading-snug">
+                      <span className="text-[0.6rem] tracking-wide uppercase text-taupe mr-2">Plat</span>
+                      {r.plat || "—"}
+                    </p>
+                    <p className="font-serif text-sm text-choco leading-snug">
+                      <span className="text-[0.6rem] tracking-wide uppercase text-taupe mr-2">Accomp.</span>
+                      {r.accompagnement || "—"}
+                    </p>
+                  </div>
+                )}
+              </div>
+            ))}
+            {rows.length === 0 && !loading && (
+              <p className="text-center text-taupe text-sm py-8">Aucune réponse pour l&apos;instant.</p>
+            )}
+          </div>
         </div>
       </div>
     </main>
