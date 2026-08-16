@@ -45,7 +45,7 @@ export const guestsV2: GuestV2[] = [
   { token: "sam-3rbc", name: "Sam", maxCompanions: 0, companions: [] },
   { token: "nathou-gw4e", name: "Nathou", maxCompanions: 0, companions: [] },
   { token: "lyta-m9qw", name: "Lyta", maxCompanions: 0, companions: [] },
-  { token: "dia-oto2", name: "Dia", maxCompanions: 0, companions: [] },
+  { token: "dia-wm2v", name: "Dia", maxCompanions: 0, companions: [] },
   { token: "rudjy-fb79", name: "Rudjy", maxCompanions: 0, companions: [] },
 
   // --- Ajoutés le 15/08 ---
