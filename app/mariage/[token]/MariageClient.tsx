@@ -19,7 +19,7 @@ const VENUE_MAPS_URL =
   "https://www.google.com/maps/search/97355/@4.910319805145264,-52.458709716796875,17z?hl=fr";
 
 // Date limite réelle pour répondre au RSVP (les menus doivent être figés pour le traiteur)
-const RSVP_DEADLINE = new Date("2026-08-16T15:00:00");
+const RSVP_DEADLINE = new Date("2026-08-17T15:00:00");
 
 const ENTREE_OPTIONS = [
   "Salade thaï accompagnée de crevettes tempura",
