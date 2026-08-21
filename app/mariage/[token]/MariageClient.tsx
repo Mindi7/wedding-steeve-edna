@@ -183,13 +183,16 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
 
   // Empêche de répondre plusieurs fois : on retient, sur cet appareil, que ce lien
   // personnel (token unique par invité) a déjà été utilisé pour confirmer une réponse.
+  // Exception : les liens "multiUse" (ex. pour répondre au nom de plusieurs personnes
+  // avec un seul lien partagé) ne sont jamais bloqués.
   const storageKey = `rsvp-envoye-${guest.token}`;
   useEffect(() => {
+    if (guest.multiUse) return;
     if (typeof window === "undefined") return;
     if (window.localStorage.getItem(storageKey) !== "oui") return;
     const id = setTimeout(() => setStatus("sent"), 0);
     return () => clearTimeout(id);
-  }, [storageKey]);
+  }, [storageKey, guest.multiUse]);
 
   // Tant que "Oui" est choisi, il faut que le menu de l'invité ET de chaque accompagnant
   // soit entièrement rempli (entrée + plat + accompagnement) avant de pouvoir confirmer.
@@ -292,13 +295,25 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
     try {
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, { from_name: name, reponse }, { publicKey: PUBLIC_KEY });
       setStatus("sent");
-      if (typeof window !== "undefined") {
+      if (!guest.multiUse && typeof window !== "undefined") {
         window.localStorage.setItem(storageKey, "oui");
       }
     } catch (err) {
       console.error("EmailJS error:", err);
       setStatus("error");
     }
+  }
+
+  // Réinitialise le formulaire pour permettre de répondre au nom d'une autre
+  // personne, sans quitter la page (uniquement sur les liens multi-usage).
+  function resetForAnotherPerson() {
+    setDisplayName("");
+    setChoice(null);
+    setCompanionCount(0);
+    setCompanionNames([]);
+    setOwnMenu(emptyMenu());
+    setCompanionMenus([]);
+    setStatus("idle");
   }
 
   return (
@@ -553,6 +568,14 @@ export default function MariageClient({ guest }: { guest: GuestV2 }) {
             {status === "sent" && !choice && "Merci, votre réponse a déjà été enregistrée ✿"}
             {status === "error" && <span className="text-rose-dk">Une erreur est survenue, merci de réessayer dans un instant.</span>}
           </p>
+          {status === "sent" && guest.multiUse && (
+            <button
+              onClick={resetForAnotherPerson}
+              className="mt-4 font-sans text-xs uppercase tracking-wide border border-blush px-5 py-3 hover:bg-blush-lt transition-all"
+            >
+              Répondre pour une autre personne
+            </button>
+          )}
           <p className="font-sans text-[0.65rem] tracking-[.2em] uppercase text-taupe mt-8">— {displayName.trim() || guest.name} —</p>
         </div>
       </section>

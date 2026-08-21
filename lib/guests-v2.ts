@@ -3,6 +3,7 @@ export type GuestV2 = {
   name: string;
   maxCompanions: number;
   companions: string[]; // noms des accompagnants déjà connus, pré-remplis (vide si pas encore renseigné)
+  multiUse?: boolean; // si true, ce lien peut servir à répondre plusieurs fois de suite (pas de blocage après envoi)
 };
 
 // Invités du "nouveau" site (design Canva) — mêmes 24 personnes que le site original,
@@ -68,6 +69,7 @@ export const guestsV2: GuestV2[] = [
   { token: "chardy-906e", name: "Chardy", maxCompanions: 1, companions: [] },
   { token: "ismael-fe43", name: "Ismaël", maxCompanions: 0, companions: [] },
   { token: "invite-sdhiil", name: "", maxCompanions: 1, companions: [] },
+  { token: "cous-multi-jbp4hy", name: "", maxCompanions: 1, companions: [], multiUse: true },
 ];
 
 export function getGuestV2ByToken(token: string): GuestV2 | undefined {
